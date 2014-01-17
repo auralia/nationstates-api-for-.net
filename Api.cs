@@ -1642,6 +1642,8 @@ namespace Auralia.NationStates.Api
                     uri = uri.Substring(0, uri.Length - 3);
                 }
 
+                uri += "&v=" + ApiVersion;
+
                 return new Uri(uri);
             }
             catch (UriFormatException ex)
@@ -1767,6 +1769,8 @@ namespace Auralia.NationStates.Api
                     // Remove "&q=" (no shards)
                     uri = uri.Substring(0, uri.Length - 3);
                 }
+
+                uri += "&v=" + ApiVersion;
 
                 return new Uri(uri);
             }
@@ -2003,16 +2007,10 @@ namespace Auralia.NationStates.Api
                 uri += "+";
             }
 
-            if (uri.Substring(uri.Length - 1).Equals("+"))
-            {
-                // Remove the extra "+"
-                uri = uri.Substring(0, uri.Length - 1);
-            }
-            else
-            {
-                // Remove "&q=" (no shards)
-                uri = uri.Substring(0, uri.Length - 3);
-            }
+            // Remove the extra "+"
+            uri = uri.Substring(0, uri.Length - 1);
+            
+            uri += "&v=" + ApiVersion;
 
             return new Uri(uri);
         }
@@ -2108,16 +2106,10 @@ namespace Auralia.NationStates.Api
                 uri += "+";
             }
 
-            if (uri.Substring(uri.Length - 1).Equals("+"))
-            {
-                // Remove the extra "+"
-                uri = uri.Substring(0, uri.Length - 1);
-            }
-            else
-            {
-                // Remove "&q=" (no shards)
-                uri = uri.Substring(0, uri.Length - 3);
-            }
+            // Remove the extra "+"
+            uri = uri.Substring(0, uri.Length - 1);
+
+            uri += "&v=" + ApiVersion;
 
             return new Uri(uri);
         }
@@ -2175,6 +2167,7 @@ namespace Auralia.NationStates.Api
                 uri += "&tgid=" + WebUtility.UrlEncode(telegramId);
                 uri += "&key=" + WebUtility.UrlEncode(telegramSecretKey);
                 uri += "&to=" + WebUtility.UrlEncode(recipientNation);
+                uri += "&v=" + ApiVersion;
 
                 return new Uri(uri);
             }
@@ -2222,6 +2215,7 @@ namespace Auralia.NationStates.Api
                 uri += "&nation=" + WebUtility.UrlEncode(nation);
                 uri += "&checksum=" + WebUtility.UrlEncode(loginVerificationCode);
                 uri += siteSpecificToken != null ? "&token=" + WebUtility.UrlEncode(siteSpecificToken) : string.Empty;
+                uri += "&v=" + ApiVersion;
 
                 return new Uri(uri);
             }

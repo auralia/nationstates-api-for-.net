@@ -8,20 +8,20 @@
 
 using System;
 using System.Reflection;
-using System.Runtime.InteropServices;
 using System.Resources;
+using System.Runtime.InteropServices;
 
 #endregion
 
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("NationStates API for .NET")]
+[assembly: AssemblyTitle("NationStates API")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("NationStates API for .NET")]
-[assembly: AssemblyCopyright("Copyright (C) 2014 Auralia")]
+[assembly: AssemblyCompany("Auralia")]
+[assembly: AssemblyProduct("NationStates API")]
+[assembly: AssemblyCopyright("Copyright © 2014 Auralia")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
