@@ -6,7 +6,7 @@ NationStates API for .NET is a free and open source library that allows .NET app
 
 ## Features ##
 
-* Complete interface to the NationStates API (supports nation, region, world, World Assembly, Telegram, Authentication and even data dumps)
+* Complete interface to the NationStates API (supports nation, region, world, World Assembly, telegram, authentication and even data dumps)
 * Rate-limiting to prevent blocked access to the API, including for the telegram API (recruitment and non-recruitment)
 * XML decoding (all data is returned in simple data structures)
 

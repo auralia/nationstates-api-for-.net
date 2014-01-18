@@ -4,14 +4,9 @@
 // </copyright>
 //-----------------------------------------------------------------------
 
-#region Using directives
-
-using System;
 using System.Reflection;
 using System.Resources;
 using System.Runtime.InteropServices;
-
-#endregion
 
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
@@ -35,6 +30,6 @@ using System.Runtime.InteropServices;
 //
 // You can specify all the values or you can use the default the Revision and 
 // Build Numbers by using the '*' as shown below:
-[assembly: AssemblyVersion("1.0.*")]
+[assembly: AssemblyVersion("0.1.*")]
 [assembly: GuidAttribute("C6199024-4BB0-4996-B6FA-A11544EF19C1")]
 [assembly: NeutralResourcesLanguageAttribute("en")]
