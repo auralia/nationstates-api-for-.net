@@ -35,6 +35,7 @@ namespace Auralia.NationStates.Api
             this.Happenings = null;
             this.Messages = null;
             this.History = null;
+            this.Poll = null;
         }
 
         /// <summary>
@@ -192,6 +193,16 @@ namespace Auralia.NationStates.Api
         /// </summary>
         /// <value>The region's history.</value>
         public HistoryEntry[] History
+        {
+            get;
+            internal set;
+        }
+
+        /// <summary>
+        /// Gets the region's polls. Corresponds to the <c>poll</c> region API shard.
+        /// </summary>
+        /// <value>The region's polls.</value>
+        public PollData Poll
         {
             get;
             internal set;
@@ -380,6 +391,153 @@ namespace Auralia.NationStates.Api
             {
                 get;
                 internal set;
+            }
+        }
+
+        /// <summary>
+        /// Represents a region's poll.
+        /// </summary>
+        public class PollData
+        {
+            /// <summary>
+            /// Initializes a new instance of the <see cref="PollData"/> class.
+            /// </summary>
+            public PollData()
+            {
+                this.Id = null;
+                this.Title = null;
+                this.Text = null;
+                this.Region = null;
+                this.StartDate = null;
+                this.EndDate = null;
+                this.Author = null;
+                this.Options = null;
+            }
+
+            /// <summary>
+            /// Gets the poll's ID.
+            /// </summary>
+            /// <value>The poll's ID.</value>
+            public int? Id
+            {
+                get;
+                internal set;
+            }
+
+            /// <summary>
+            /// Gets the poll's title.
+            /// </summary>
+            /// <value>The poll's title.</value>
+            public string Title
+            {
+                get;
+                internal set;
+            }
+
+            /// <summary>
+            /// Gets the poll's text.
+            /// </summary>
+            /// <value>The poll's text.</value>
+            public string Text
+            {
+                get;
+                internal set;
+            }
+
+            /// <summary>
+            /// Gets the poll's region.
+            /// </summary>
+            /// <value>The poll's region.</value>
+            public string Region
+            {
+                get;
+                internal set;
+            }
+
+            /// <summary>
+            /// Gets the poll's start date.
+            /// </summary>
+            /// <value>The poll's start date.</value>
+            public DateTime? StartDate
+            {
+                get;
+                internal set;
+            }
+
+            /// <summary>
+            /// Gets the poll's end date.
+            /// </summary>
+            /// <value>The poll's end date.</value>
+            public DateTime? EndDate
+            {
+                get;
+                internal set;
+            }
+
+            /// <summary>
+            /// Gets the poll's author.
+            /// </summary>
+            /// <value>The poll's author.</value>
+            public string Author
+            {
+                get;
+                internal set;
+            }
+
+            /// <summary>
+            /// Gets the poll's options.
+            /// </summary>
+            /// <value>The poll's options.</value>
+            public Option[] Options
+            {
+                get;
+                internal set;
+            }
+
+            /// <summary>
+            /// Represents a poll option.
+            /// </summary>
+            public class Option
+            {
+                /// <summary>
+                /// Initializes a new instance of the <see cref="Option"/> class.
+                /// </summary>
+                public Option()
+                {
+                    this.Id = null;
+                    this.Text = null;
+                    this.Votes = null;
+                }
+
+                /// <summary>
+                /// Gets the option's ID.
+                /// </summary>
+                /// <value>The option's ID.</value>
+                public int? Id
+                {
+                    get;
+                    internal set;
+                }
+
+                /// <summary>
+                /// Gets the option's text.
+                /// </summary>
+                /// <value>The option's text.</value>
+                public string Text 
+                {
+                    get;
+                    internal set;
+                }
+
+                /// <summary>
+                /// Gets the number of votes for the option.
+                /// </summary>
+                /// <value>The number of votes for the option.</value>
+                public int? Votes
+                {
+                    get;
+                    internal set;
+                }
             }
         }
     }

@@ -21,7 +21,7 @@ namespace Auralia.NationStates.Api
         /// <summary>
         /// The API version specified in API requests.
         /// </summary>
-        public const int ApiVersion = 4;
+        public const int ApiVersion = 7;
 
         /// <summary>
         /// A <see cref="DateTime"/> object representing the Unix epoch.
@@ -728,17 +728,17 @@ namespace Auralia.NationStates.Api
             {
                 nationData.GovernmentBudget = new NationData.GovernmentBudgetData();
 
-                nationData.GovernmentBudget.EnvironmentPercentage = Convert.ToInt32(responseNode["GOVT"]["ENVIRONMENT"].InnerText.Substring(0, responseNode["GOVT"]["ENVIRONMENT"].InnerText.Length - 1));
-                nationData.GovernmentBudget.SocialEqualityPercentage = Convert.ToInt32(responseNode["GOVT"]["SOCIALEQUALITY"].InnerText.Substring(0, responseNode["GOVT"]["SOCIALEQUALITY"].InnerText.Length - 1));
-                nationData.GovernmentBudget.EducationPercentage = Convert.ToInt32(responseNode["GOVT"]["EDUCATION"].InnerText.Substring(0, responseNode["GOVT"]["EDUCATION"].InnerText.Length - 1));
-                nationData.GovernmentBudget.LawAndOrderPercentage = Convert.ToInt32(responseNode["GOVT"]["LAWANDORDER"].InnerText.Substring(0, responseNode["GOVT"]["LAWANDORDER"].InnerText.Length - 1));
-                nationData.GovernmentBudget.AdministrationPercentage = Convert.ToInt32(responseNode["GOVT"]["ADMINISTRATION"].InnerText.Substring(0, responseNode["GOVT"]["ADMINISTRATION"].InnerText.Length - 1));
-                nationData.GovernmentBudget.WelfarePercentage = Convert.ToInt32(responseNode["GOVT"]["WELFARE"].InnerText.Substring(0, responseNode["GOVT"]["WELFARE"].InnerText.Length - 1));
-                nationData.GovernmentBudget.SpiritualityPercentage = Convert.ToInt32(responseNode["GOVT"]["SPIRITUALITY"].InnerText.Substring(0, responseNode["GOVT"]["SPIRITUALITY"].InnerText.Length - 1));
-                nationData.GovernmentBudget.DefensePercentage = Convert.ToInt32(responseNode["GOVT"]["DEFENCE"].InnerText.Substring(0, responseNode["GOVT"]["DEFENCE"].InnerText.Length - 1));
-                nationData.GovernmentBudget.PublicTransportPercentage = Convert.ToInt32(responseNode["GOVT"]["PUBLICTRANSPORT"].InnerText.Substring(0, responseNode["GOVT"]["PUBLICTRANSPORT"].InnerText.Length - 1));
-                nationData.GovernmentBudget.HealthcarePercentage = Convert.ToInt32(responseNode["GOVT"]["HEALTHCARE"].InnerText.Substring(0, responseNode["GOVT"]["HEALTHCARE"].InnerText.Length - 1));
-                nationData.GovernmentBudget.CommercePercentage = Convert.ToInt32(responseNode["GOVT"]["COMMERCE"].InnerText.Substring(0, responseNode["GOVT"]["COMMERCE"].InnerText.Length - 1));
+                nationData.GovernmentBudget.EnvironmentPercentage = Convert.ToDouble(responseNode["GOVT"]["ENVIRONMENT"].InnerText.Substring(0, responseNode["GOVT"]["ENVIRONMENT"].InnerText.Length - 1));
+                nationData.GovernmentBudget.SocialEqualityPercentage = Convert.ToDouble(responseNode["GOVT"]["SOCIALEQUALITY"].InnerText.Substring(0, responseNode["GOVT"]["SOCIALEQUALITY"].InnerText.Length - 1));
+                nationData.GovernmentBudget.EducationPercentage = Convert.ToDouble(responseNode["GOVT"]["EDUCATION"].InnerText.Substring(0, responseNode["GOVT"]["EDUCATION"].InnerText.Length - 1));
+                nationData.GovernmentBudget.LawAndOrderPercentage = Convert.ToDouble(responseNode["GOVT"]["LAWANDORDER"].InnerText.Substring(0, responseNode["GOVT"]["LAWANDORDER"].InnerText.Length - 1));
+                nationData.GovernmentBudget.AdministrationPercentage = Convert.ToDouble(responseNode["GOVT"]["ADMINISTRATION"].InnerText.Substring(0, responseNode["GOVT"]["ADMINISTRATION"].InnerText.Length - 1));
+                nationData.GovernmentBudget.WelfarePercentage = Convert.ToDouble(responseNode["GOVT"]["WELFARE"].InnerText.Substring(0, responseNode["GOVT"]["WELFARE"].InnerText.Length - 1));
+                nationData.GovernmentBudget.SpiritualityPercentage = Convert.ToDouble(responseNode["GOVT"]["SPIRITUALITY"].InnerText.Substring(0, responseNode["GOVT"]["SPIRITUALITY"].InnerText.Length - 1));
+                nationData.GovernmentBudget.DefensePercentage = Convert.ToDouble(responseNode["GOVT"]["DEFENCE"].InnerText.Substring(0, responseNode["GOVT"]["DEFENCE"].InnerText.Length - 1));
+                nationData.GovernmentBudget.PublicTransportPercentage = Convert.ToDouble(responseNode["GOVT"]["PUBLICTRANSPORT"].InnerText.Substring(0, responseNode["GOVT"]["PUBLICTRANSPORT"].InnerText.Length - 1));
+                nationData.GovernmentBudget.HealthcarePercentage = Convert.ToDouble(responseNode["GOVT"]["HEALTHCARE"].InnerText.Substring(0, responseNode["GOVT"]["HEALTHCARE"].InnerText.Length - 1));
+                nationData.GovernmentBudget.CommercePercentage = Convert.ToDouble(responseNode["GOVT"]["COMMERCE"].InnerText.Substring(0, responseNode["GOVT"]["COMMERCE"].InnerText.Length - 1));
             }
 
             if (responseNode["GOVTDESC"] != null)
@@ -797,7 +797,7 @@ namespace Auralia.NationStates.Api
 
             if (responseNode["PUBLICSECTOR"] != null)
             {
-                nationData.PublicSectorPercentage = Convert.ToInt32(responseNode["PUBLICSECTOR"].InnerText.Substring(0, responseNode["PUBLICSECTOR"].InnerText.Length - 1));
+                nationData.PublicSectorPercentage = Convert.ToDouble(responseNode["PUBLICSECTOR"].InnerText.Substring(0, responseNode["PUBLICSECTOR"].InnerText.Length - 1));
             }
 
             if (responseNode["DEATHS"] != null)
@@ -808,7 +808,7 @@ namespace Auralia.NationStates.Api
                 {
                     var causeOfDeath = new NationData.CauseOfDeath();
 
-                    causeOfDeath.Percentage = Convert.ToInt32(causeOfDeathNode.InnerText.Substring(0, causeOfDeathNode.InnerText.Length - 1));
+                    causeOfDeath.Percentage = Convert.ToDouble(causeOfDeathNode.InnerText.Substring(0, causeOfDeathNode.InnerText.Length - 1));
                     causeOfDeath.Name = causeOfDeathNode.Attributes["type"].InnerText;
 
                     causesOfDeath.Add(causeOfDeath);
@@ -886,6 +886,79 @@ namespace Auralia.NationStates.Api
                 }
 
                 nationData.Happenings = happenings.ToArray();
+            }
+
+            if (responseNode["DEMONYM"] != null)
+            {
+                nationData.DemonymAdjective = responseNode["DEMONYM"].InnerText;
+            }
+
+            if (responseNode["DEMONYM2"] != null)
+            {
+                nationData.DemonymNoun = responseNode["DEMONYM2"].InnerText;
+            }
+
+            if (responseNode["DEMONYM2PLURAL"] != null)
+            {
+                nationData.DemonymNounPlural = responseNode["DEMONYM2PLURAL"].InnerText;
+            }
+
+            if (responseNode["FACTBOOKS"] != null)
+            {
+                nationData.NumberOfFactbooks = Convert.ToInt32(responseNode["FACTBOOKS"].InnerText);
+            }
+
+            if (responseNode["FACTBOOKLIST"] != null)
+            {
+                var factbooks = new List<NationData.FactbookMetadataData>();
+
+                foreach (XmlNode factbookNode in responseNode["FACTBOOKLIST"].SelectNodes("FACTBOOK"))
+                {
+                    var factbook = new NationData.FactbookMetadataData();
+
+                    factbook.Id = Convert.ToInt32(factbookNode.Attributes["id"].InnerText);
+                    factbook.Title = factbookNode["TITLE"].InnerText;
+                    factbook.Author = factbookNode["AUTHOR"].InnerText;
+                    factbook.Category = factbookNode["CATEGORY"].InnerText;
+                    factbook.Subcategory = factbookNode["SUBCATEGORY"].InnerText;
+                    factbook.DateCreated = FromUnixTime(Convert.ToInt32(factbookNode["CREATED"].InnerText));
+                    factbook.DateEdited = FromUnixTime(Convert.ToInt32(factbookNode["EDITED"].InnerText));
+                    factbook.NumberOfViews = Convert.ToInt32(factbookNode["VIEWS"].InnerText);
+                    factbook.Score = Convert.ToInt32(factbookNode["SCORE"].InnerText);
+
+                    factbooks.Add(factbook);
+                }
+
+                nationData.FactbookMetadata = factbooks.ToArray();
+            }
+
+            if (responseNode["DISPATCHES"] != null)
+            {
+                nationData.NumberOfDispatches = Convert.ToInt32(responseNode["DISPATCHES"].InnerText);
+            }
+
+            if (responseNode["DISPATCHLIST"] != null)
+            {
+                var dispatches = new List<NationData.DispatchMetadataData>();
+
+                foreach (XmlNode dispatchNode in responseNode["DISPATCHLIST"].SelectNodes("DISPATCH"))
+                {
+                    var dispatch = new NationData.DispatchMetadataData();
+
+                    dispatch.Id = Convert.ToInt32(dispatchNode.Attributes["id"].InnerText);
+                    dispatch.Title = dispatchNode["TITLE"].InnerText;
+                    dispatch.Author = dispatchNode["AUTHOR"].InnerText;
+                    dispatch.Category = dispatchNode["CATEGORY"].InnerText;
+                    dispatch.Subcategory = dispatchNode["SUBCATEGORY"].InnerText;
+                    dispatch.DateCreated = FromUnixTime(Convert.ToInt32(dispatchNode["CREATED"].InnerText));
+                    dispatch.DateEdited = FromUnixTime(Convert.ToInt32(dispatchNode["EDITED"].InnerText));
+                    dispatch.NumberOfViews = Convert.ToInt32(dispatchNode["VIEWS"].InnerText);
+                    dispatch.Score = Convert.ToInt32(dispatchNode["SCORE"].InnerText);
+
+                    dispatches.Add(dispatch);
+                }
+
+                nationData.DispatchMetadata = dispatches.ToArray();
             }
 
             return nationData;
@@ -1056,6 +1129,38 @@ namespace Auralia.NationStates.Api
                 regionData.History = historyEntries.ToArray();
             }
 
+            if (responseNode["POLL"] != null)
+            {
+                regionData.Poll = new RegionData.PollData();
+
+                regionData.Poll.Id = Convert.ToInt32(responseNode["POLL"].Attributes["id"].InnerText);
+                regionData.Poll.Title = responseNode["POLL"]["TITLE"].InnerText;
+                if (responseNode["POLL"]["TEXT"] != null)
+                {
+                    regionData.Poll.Text = responseNode["POLL"]["TEXT"].InnerText;
+                }
+
+                regionData.Poll.Region = responseNode["POLL"]["REGION"].InnerText;
+                regionData.Poll.StartDate = FromUnixTime(Convert.ToInt32(responseNode["POLL"]["START"].InnerText));
+                regionData.Poll.EndDate = FromUnixTime(Convert.ToInt32(responseNode["POLL"]["STOP"].InnerText));
+                regionData.Poll.Author = responseNode["POLL"]["AUTHOR"].InnerText;
+
+                var options = new List<RegionData.PollData.Option>();
+
+                foreach (XmlNode optionNode in responseNode["POLL"].SelectNodes("./OPTIONS/OPTION"))
+                {
+                    var option = new RegionData.PollData.Option();
+
+                    option.Id = Convert.ToInt32(optionNode.Attributes["id"].InnerText);
+                    option.Text = optionNode["OPTIONTEXT"].InnerText;
+                    option.Votes = Convert.ToInt32(optionNode["VOTES"].InnerText);
+
+                    options.Add(option);
+                }
+
+                regionData.Poll.Options = options.ToArray();
+            }
+
             return regionData;
         }
 
@@ -1102,30 +1207,12 @@ namespace Auralia.NationStates.Api
 
             if (responseNode["CENSUSMEDIAN"] != null)
             {
-                worldData.CensusMedian = Convert.ToInt32(responseNode["CENSUSMEDIAN"].InnerText);
+                worldData.CensusMedian = Convert.ToDouble(responseNode["CENSUSMEDIAN"].InnerText);
             }
 
             if (responseNode["FEATUREDREGION"] != null)
             {
                 worldData.FeaturedRegion = responseNode["FEATUREDREGION"].InnerText;
-            }
-
-            if (responseNode["HAPPENINGS"] != null)
-            {
-                var happenings = new List<WorldData.Happening>();
-
-                foreach (XmlNode happeningNode in responseNode["HAPPENINGS"].SelectNodes("EVENT"))
-                {
-                    var happening = new WorldData.Happening();
-
-                    happening.Text = happeningNode["TEXT"].InnerText;
-                    happening.Timestamp = FromUnixTime(Convert.ToInt32(happeningNode["TIMESTAMP"].InnerText));
-                    happening.Id = Convert.ToInt32(happeningNode.Attributes["id"].InnerText);
-
-                    happenings.Add(happening);
-                }
-
-                worldData.Happenings = happenings.ToArray();
             }
 
             if (responseNode["NEWNATIONS"] != null)
@@ -1154,6 +1241,96 @@ namespace Auralia.NationStates.Api
                 {
                     worldData.RegionsByTag = regions;
                 }
+            }
+
+            if (responseNode["POLL"] != null)
+            {
+                worldData.Poll = new WorldData.PollData();
+
+                worldData.Poll.Id = Convert.ToInt32(responseNode["POLL"].Attributes["id"].InnerText);
+                worldData.Poll.Title = responseNode["POLL"]["TITLE"].InnerText;
+                if (responseNode["POLL"]["TEXT"] != null)
+                {
+                    worldData.Poll.Text = responseNode["POLL"]["TEXT"].InnerText;
+                }
+
+                worldData.Poll.Region = responseNode["POLL"]["REGION"].InnerText;
+                worldData.Poll.StartDate = FromUnixTime(Convert.ToInt32(responseNode["POLL"]["START"].InnerText));
+                worldData.Poll.EndDate = FromUnixTime(Convert.ToInt32(responseNode["POLL"]["STOP"].InnerText));
+                worldData.Poll.Author = responseNode["POLL"]["AUTHOR"].InnerText;
+
+                var options = new List<WorldData.PollData.Option>();
+
+                foreach (XmlNode optionNode in responseNode["POLL"].SelectNodes("./OPTIONS/OPTION"))
+                {
+                    var option = new WorldData.PollData.Option();
+
+                    option.Id = Convert.ToInt32(optionNode.Attributes["id"].InnerText);
+                    option.Text = optionNode["OPTIONTEXT"].InnerText;
+                    option.Votes = Convert.ToInt32(optionNode["VOTES"].InnerText);
+
+                    options.Add(option);
+                }
+
+                worldData.Poll.Options = options.ToArray();
+            }
+
+            if (responseNode["DISPATCH"] != null)
+            {
+                worldData.Dispatch = new WorldData.DispatchData();
+
+                worldData.Dispatch.Id = Convert.ToInt32(responseNode["DISPATCH"].Attributes["id"].InnerText);
+                worldData.Dispatch.Title = responseNode["DISPATCH"]["TITLE"].InnerText;
+                worldData.Dispatch.Author = responseNode["DISPATCH"]["AUTHOR"].InnerText;
+                worldData.Dispatch.Category = responseNode["DISPATCH"]["CATEGORY"].InnerText;
+                worldData.Dispatch.Subcategory = responseNode["DISPATCH"]["SUBCATEGORY"].InnerText;
+                worldData.Dispatch.DateCreated = FromUnixTime(Convert.ToInt32(responseNode["DISPATCH"]["CREATED"].InnerText));
+                worldData.Dispatch.DateEdited = FromUnixTime(Convert.ToInt32(responseNode["DISPATCH"]["EDITED"].InnerText));
+                worldData.Dispatch.NumberOfViews = Convert.ToInt32(responseNode["DISPATCH"]["VIEWS"].InnerText);
+                worldData.Dispatch.Score = Convert.ToInt32(responseNode["DISPATCH"]["SCORE"].InnerText);
+                worldData.Dispatch.Text = responseNode["DISPATCH"]["AUTHOR"].InnerText;
+            }
+
+            if (responseNode["DISPATCHLIST"] != null)
+            {
+                var dispatches = new List<WorldData.DispatchMetadataData>();
+
+                foreach (XmlNode dispatchNode in responseNode["DISPATCHLIST"].SelectNodes("DISPATCH"))
+                {
+                    var dispatch = new WorldData.DispatchMetadataData();
+
+                    dispatch.Id = Convert.ToInt32(dispatchNode.Attributes["id"].InnerText);
+                    dispatch.Title = dispatchNode["TITLE"].InnerText;
+                    dispatch.Author = dispatchNode["AUTHOR"].InnerText;
+                    dispatch.Category = dispatchNode["CATEGORY"].InnerText;
+                    dispatch.Subcategory = dispatchNode["SUBCATEGORY"].InnerText;
+                    dispatch.DateCreated = FromUnixTime(Convert.ToInt32(dispatchNode["CREATED"].InnerText));
+                    dispatch.DateEdited = FromUnixTime(Convert.ToInt32(dispatchNode["EDITED"].InnerText));
+                    dispatch.NumberOfViews = Convert.ToInt32(dispatchNode["VIEWS"].InnerText);
+                    dispatch.Score = Convert.ToInt32(dispatchNode["SCORE"].InnerText);
+
+                    dispatches.Add(dispatch);
+                }
+
+                worldData.DispatchMetadata = dispatches.ToArray();
+            }
+
+            if (responseNode["HAPPENINGS"] != null)
+            {
+                var happenings = new List<WorldData.Happening>();
+
+                foreach (XmlNode happeningNode in responseNode["HAPPENINGS"].SelectNodes("EVENT"))
+                {
+                    var happening = new WorldData.Happening();
+
+                    happening.Text = happeningNode["TEXT"].InnerText;
+                    happening.Timestamp = FromUnixTime(Convert.ToInt32(happeningNode["TIMESTAMP"].InnerText));
+                    happening.Id = Convert.ToInt32(happeningNode.Attributes["id"].InnerText);
+
+                    happenings.Add(happening);
+                }
+
+                worldData.Happenings = happenings.ToArray();
             }
 
             return worldData;
@@ -1631,6 +1808,41 @@ namespace Auralia.NationStates.Api
                     uri += "happenings+";
                 }
 
+                if (shards.DemonymAdjective)
+                {
+                    uri += "demonym+";
+                }
+
+                if (shards.DemonymNoun)
+                {
+                    uri += "demonym2+";
+                }
+
+                if (shards.DemonymNounPlural)
+                {
+                    uri += "demonym2plural+";
+                }
+
+                if (shards.NumberOfFactbooks)
+                {
+                    uri += "factbooks+";
+                }
+
+                if (shards.FactbookMetadata)
+                {
+                    uri += "factbooklist+";
+                }
+
+                if (shards.NumberOfDispatches)
+                {
+                    uri += "dispatches+";
+                }
+
+                if (shards.DispatchMetadata)
+                {
+                    uri += "dispatchlist+";
+                }
+
                 if (uri.Substring(uri.Length - 1).Equals("+"))
                 {
                     // Remove the extra "+"
@@ -1753,6 +1965,11 @@ namespace Auralia.NationStates.Api
                     uri += "history+";
                 }
 
+                if (shards.Poll)
+                {
+                    uri += "poll+";
+                }
+
                 // This shard must be the last shard in the URL.
                 if (shards.Messages)
                 {
@@ -1839,9 +2056,136 @@ namespace Auralia.NationStates.Api
                 uri += "featuredregion+";
             }
 
+            if (shards.NewNations)
+            {
+                uri += "newnations+";
+            }
+
+            // These shards must go at the end.
+            if (shards.Poll)
+            {
+                if (shards.RegionsByTag || shards.DispatchList || shards.Happenings || shards.Dispatch)
+                {
+                    throw new ArgumentException("shards.Happenings, shards.Dispatch, shards.RegionsByTag and shards.DispatchList must be false when shards.Poll is true.", "shards");
+                }
+
+                uri += "poll;pollid=" + shards.PollId + "+";
+            }
+
+            if (shards.Dispatch)
+            {
+                if (shards.RegionsByTag || shards.DispatchList || shards.Happenings || shards.Poll)
+                {
+                    throw new ArgumentException("shards.Happenings, shards.Poll, shards.RegionsByTag and shards.DispatchList must be false when shards.Dispatch is true.", "shards");
+                }
+
+                uri += "dispatch;dispatchid=" + shards.DispatchId + "+";
+            }
+
+            if (shards.RegionsByTag)
+            {
+                uri += "regionsbytag";
+
+                if (shards.Happenings || shards.DispatchList || shards.Poll || shards.Dispatch)
+                {
+                    throw new ArgumentException("shards.Poll, shards.Dispatch, shards.Happenings and shards.DispatchList must be false when shards.Happenings is true.", "shards");
+                }
+
+                if (shards.RegionsByTagConfiguration == null)
+                {
+                    throw new ArgumentNullException("shards", "shards.RegionsByTagConfiguration must not be null when shards.RegionsByTag is true.");
+                }
+                else if ((shards.RegionsByTagConfiguration.IncludeRegionsWithoutTags == null && shards.RegionsByTagConfiguration.IncludeRegionsWithTags == null) ||
+                    (shards.RegionsByTagConfiguration.IncludeRegionsWithoutTags != null && shards.RegionsByTagConfiguration.IncludeRegionsWithoutTags.Length == 0 && shards.RegionsByTagConfiguration.IncludeRegionsWithTags == null) ||
+                    (shards.RegionsByTagConfiguration.IncludeRegionsWithTags != null && shards.RegionsByTagConfiguration.IncludeRegionsWithTags.Length == 0 && shards.RegionsByTagConfiguration.IncludeRegionsWithoutTags == null))
+                {
+                    throw new ArgumentException("shards.IncludeRegionsWithoutTags and shards.IncludeRegionsWithTags must not both be null or empty when shards.RegionsByTag is true.", "shards");
+                }
+                else if ((shards.RegionsByTagConfiguration.IncludeRegionsWithoutTags == null && shards.RegionsByTagConfiguration.IncludeRegionsWithTags != null && shards.RegionsByTagConfiguration.IncludeRegionsWithTags.Length > 10) ||
+                    (shards.RegionsByTagConfiguration.IncludeRegionsWithTags == null && shards.RegionsByTagConfiguration.IncludeRegionsWithoutTags != null && shards.RegionsByTagConfiguration.IncludeRegionsWithoutTags.Length > 10) ||
+                    (shards.RegionsByTagConfiguration.IncludeRegionsWithTags != null && shards.RegionsByTagConfiguration.IncludeRegionsWithoutTags != null && shards.RegionsByTagConfiguration.IncludeRegionsWithoutTags.Length + shards.RegionsByTagConfiguration.IncludeRegionsWithTags.Length > 10))
+                {
+                    throw new ArgumentException("shards.IncludeRegionsWithoutTags and shards.IncludeRegionsWithTags cannot have a combined length exceeding 10.", "shards");
+                }
+
+                uri += ";tags=";
+
+                if (shards.RegionsByTagConfiguration.IncludeRegionsWithoutTags != null)
+                {
+                    foreach (var tag in shards.RegionsByTagConfiguration.IncludeRegionsWithoutTags)
+                    {
+                        uri += "-" + tag + ",";
+                    }
+                }
+
+                if (shards.RegionsByTagConfiguration.IncludeRegionsWithTags != null)
+                {
+                    foreach (var tag in shards.RegionsByTagConfiguration.IncludeRegionsWithTags)
+                    {
+                        uri += tag + ",";
+                    }
+                }
+
+                // Remove the extra ","
+                uri = uri.Substring(0, uri.Length - 1);
+
+                uri += "+";
+            }
+
+            if (shards.DispatchList)
+            {
+                uri += "dispatchlist";
+
+                if (shards.RegionsByTag || shards.Happenings || shards.Poll || shards.Dispatch)
+                {
+                    throw new ArgumentException("shards.Poll, shards.Dispatch, shards.RegionsByTag and shards.Happenings must be false when shards.DispatchList is true.", "shards");
+                }
+
+                if (shards.DispatchListConfiguration == null)
+                {
+                    throw new ArgumentNullException("shards", "shards.DispatchListConfiguration must not be null when shards.DispatchList is true.");
+                }
+
+                if (shards.DispatchListConfiguration.Author != null)
+                {
+                    uri += ";dispatchauthor=" + shards.DispatchListConfiguration.Author;
+                }
+
+                if (shards.DispatchListConfiguration.Category != null)
+                {
+                    if (shards.DispatchListConfiguration.Subcategory != null)
+                    {
+                        uri += ";dispatchcategory=" + shards.DispatchListConfiguration.Category;
+                    }
+                    else
+                    {
+                        uri += ";dispatchcategory=" + shards.DispatchListConfiguration.Category + ":" + shards.DispatchListConfiguration.Subcategory;
+                    }
+                }
+
+                if (shards.DispatchListConfiguration.Sort != null)
+                {
+                    if (shards.DispatchListConfiguration.Sort == WorldShards.DispatchListConfigurationData.SortType.Best)
+                    {
+                        uri += ";dispatchsort=best";
+                    }
+                    else if (shards.DispatchListConfiguration.Sort == WorldShards.DispatchListConfigurationData.SortType.New)
+                    {
+                        uri += ";dispatchsort=new";
+                    }
+                }
+
+                uri += "+";
+            }
+
             if (shards.Happenings)
             {
                 uri += "happenings";
+
+                if (shards.RegionsByTag || shards.DispatchList || shards.Poll || shards.Dispatch)
+                {
+                    throw new ArgumentException("shards.Poll, shards.Dispatch, shards.RegionsByTag and shards.DispatchList must be false when shards.Happenings is true.", "shards");
+                }
 
                 if (shards.HappeningsConfiguration == null)
                 {
@@ -1954,55 +2298,6 @@ namespace Auralia.NationStates.Api
                 {
                     uri += ";beforeid=" + shards.HappeningsConfiguration.BeforeId;
                 }
-
-                uri += "+";
-            }
-
-            if (shards.NewNations)
-            {
-                uri += "newnations+";
-            }
-
-            if (shards.RegionsByTag)
-            {
-                uri += "regionsbytag";
-                
-                if (shards.RegionsByTagConfiguration == null)
-                {
-                    throw new ArgumentNullException("shards", "shards.RegionsByTagConfiguration must not be null when shards.RegionsByTag is true.");
-                }
-                else if ((shards.RegionsByTagConfiguration.IncludeRegionsWithoutTags == null || shards.RegionsByTagConfiguration.IncludeRegionsWithoutTags.Length == 0) &&
-                    (shards.RegionsByTagConfiguration.IncludeRegionsWithTags == null || shards.RegionsByTagConfiguration.IncludeRegionsWithoutTags.Length == 0))
-                {
-                    throw new ArgumentException("shards.IncludeRegionsWithoutTags and shards.IncludeRegionsWithTags must not both be null or empty when shards.RegionsByTag is true.", "shards");
-                }
-                else if ((shards.RegionsByTagConfiguration.IncludeRegionsWithoutTags == null && shards.RegionsByTagConfiguration.IncludeRegionsWithTags.Length > 10) ||
-                    (shards.RegionsByTagConfiguration.IncludeRegionsWithTags == null && shards.RegionsByTagConfiguration.IncludeRegionsWithoutTags.Length > 10) ||
-                    (shards.RegionsByTagConfiguration.IncludeRegionsWithoutTags.Length + shards.RegionsByTagConfiguration.IncludeRegionsWithTags.Length > 10))
-                {
-                    throw new ArgumentException("shards.IncludeRegionsWithoutTags and shards.IncludeRegionsWithTags cannot have a combined length exceeding 10.", "shards");
-                }
-
-                uri += ";tags=";
-
-                if (shards.RegionsByTagConfiguration.IncludeRegionsWithoutTags != null)
-                {
-                    foreach (var tag in shards.RegionsByTagConfiguration.IncludeRegionsWithoutTags)
-                    {
-                        uri += "-" + tag + ",";
-                    }
-                }
-
-                if (shards.RegionsByTagConfiguration.IncludeRegionsWithTags != null)
-                {
-                    foreach (var tag in shards.RegionsByTagConfiguration.IncludeRegionsWithoutTags)
-                    {
-                        uri += tag + ",";
-                    }
-                }
-                
-                // Remove the extra ","
-                uri = uri.Substring(0, uri.Length - 1);
 
                 uri += "+";
             }

@@ -24,6 +24,21 @@ namespace Auralia.NationStates.Api
         private RegionsByTagConfigurationData regionsByTagConfiguration;
 
         /// <summary>
+        /// The configuration for the <c>dispatchlist</c> world API shard in the request.
+        /// </summary>
+        private DispatchListConfigurationData dispatchListConfiguration;
+
+        /// <summary>
+        /// The dispatch ID associated with the <c>dispatch</c> world API shard in the request.
+        /// </summary>
+        private int dispatchId;
+
+        /// <summary>
+        /// The poll ID associated with the <c>poll</c> world API shard in the request.
+        /// </summary>
+        private int pollId;
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="WorldShards"/> class.
         /// </summary>
         /// <param name="enableAll">A value indicating whether all shards are enabled in the request.</param>
@@ -37,11 +52,17 @@ namespace Auralia.NationStates.Api
             this.CensusScale = enableAll;
             this.CensusMedian = enableAll;
             this.FeaturedRegion = enableAll;
-            this.Happenings = enableAll;
-            this.HappeningsConfiguration = new HappeningsConfigurationData();
             this.NewNations = enableAll;
             this.RegionsByTag = enableAll;
             this.RegionsByTagConfiguration = new RegionsByTagConfigurationData();
+            this.Poll = enableAll;
+            this.PollId = 1;
+            this.Dispatch = enableAll;
+            this.DispatchId = 1;
+            this.DispatchList = enableAll;
+            this.DispatchListConfiguration = new DispatchListConfigurationData();
+            this.Happenings = enableAll;
+            this.HappeningsConfiguration = new HappeningsConfigurationData();
         }
 
         /// <summary>
@@ -125,40 +146,6 @@ namespace Auralia.NationStates.Api
         }
 
         /// <summary>
-        /// Gets or sets a value indicating whether the <c>happenings</c> world API shard is enabled in the request. The <c>happenings</c> shard retrieves the world's happenings.
-        /// </summary>
-        /// <value>A value indicating whether the <c>happenings</c> world API shard is enabled in the request.</value>
-        public bool Happenings
-        {
-            get;
-            set;
-        }
-
-        /// <summary>
-        /// Gets or sets the configuration for the <c>happenings</c> world API shard in the request.
-        /// </summary>
-        /// <value>The configuration for the <c>happenings</c> world API shard in the request.</value>
-        public HappeningsConfigurationData HappeningsConfiguration
-        {
-            get
-            {
-                return this.happeningsConfiguration;
-            }
-
-            set
-            {
-                if (value == null)
-                {
-                    throw new ArgumentNullException("HappeningsConfiguration", "The happenings configuration cannot be null.");
-                }
-                else
-                {
-                    this.happeningsConfiguration = value;
-                }
-            }
-        }
-
-        /// <summary>
         /// Gets or sets a value indicating whether the <c>newnations</c> world API shard is enabled in the request. The <c>newnations</c> shard retrieves the most recently created nations.
         /// </summary>
         /// <value>A value indicating whether the <c>newnations</c> world API shard is enabled in the request.</value>
@@ -169,7 +156,7 @@ namespace Auralia.NationStates.Api
         }
 
         /// <summary>
-        /// Gets or sets a value indicating whether the <c>regionsbytag</c> world API shard is enabled in the request. The <c>regionsbytag</c> shard retrieves the regions with or without the tags specified in the request.
+        /// Gets or sets a value indicating whether the <c>regionsbytag</c> world API shard is enabled in the request. The <c>regionsbytag</c> shard retrieves the regions with or without the tags specified in the request. This shard cannot be enabled if the <c>dispatch</c>, <c>poll</c>, <c>dispatchlist</c> shard or <c>happenings</c> shard is enabled.
         /// </summary>
         /// <value>A value indicating whether the <c>regionsbytag</c> world API shard is enabled in the request.</value>
         public bool RegionsByTag
@@ -198,6 +185,142 @@ namespace Auralia.NationStates.Api
                 else
                 {
                     this.regionsByTagConfiguration = value;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether the <c>poll</c> world API shard is enabled in the request. The <c>dispatch</c> shard retrieves the poll with the ID specified in the request. This shard cannot be enabled if the <c>dispatch</c>, <c>dispatchlist</c>, <c>regionsbytag</c> shard or <c>happenings</c> shard is enabled.
+        /// </summary>
+        /// <value>A value indicating whether the <c>poll</c> world API shard is enabled in the request.</value>
+        public bool Poll
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Gets or sets the poll ID associated with the <c>poll</c> world API shard in the request. The default ID is 1.
+        /// </summary>
+        /// <value>The poll ID associated with the <c>poll</c> world API shard in the request.</value>
+        public int PollId
+        {
+            get
+            {
+                return this.pollId;
+            }
+
+            set
+            {
+                if (value < 1)
+                {
+                    throw new ArgumentException("The poll ID cannot be less than one.", "PollId");
+                }
+                else
+                {
+                    this.pollId = value;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether the <c>dispatch</c> world API shard is enabled in the request. The <c>dispatch</c> shard retrieves the dispatch with the ID specified in the request. This shard cannot be enabled if the <c>dispatchlist</c>, <c>poll</c>, <c>regionsbytag</c> shard or <c>happenings</c> shard is enabled.
+        /// </summary>
+        /// <value>A value indicating whether the <c>dispatch</c> world API shard is enabled in the request.</value>
+        public bool Dispatch
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Gets or sets the dispatch ID associated with the <c>dispatch</c> world API shard in the request. The default ID is 1.
+        /// </summary>
+        /// <value>The dispatch ID associated with the <c>dispatch</c> world API shard in the request.</value>
+        public int DispatchId
+        {
+            get
+            {
+                return this.dispatchId;
+            }
+
+            set
+            {
+                if (value < 1)
+                {
+                    throw new ArgumentException("The dispatch ID cannot be less than one.", "DispatchId");
+                }
+                else
+                {
+                    this.dispatchId = value;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether the <c>dispatchlist</c> world API shard is enabled in the request. The <c>dispatchlist</c> shard retrieves metadata for the dispatches which match the criteria specified in the request. This shard cannot be enabled if the <c>dispatch</c>, <c>poll</c>, <c>regionsbytag</c> shard or <c>happenings</c> shard is enabled.
+        /// </summary>
+        /// <value>A value indicating whether the <c>dispatchlist</c> world API shard is enabled in the request.</value>
+        public bool DispatchList
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Gets or sets the configuration for the <c>dispatchlist</c> world API shard in the request.
+        /// </summary>
+        /// <value>The configuration for the <c>dispatchlist</c> world API shard in the request.</value>
+        public DispatchListConfigurationData DispatchListConfiguration
+        {
+            get
+            {
+                return this.dispatchListConfiguration;
+            }
+
+            set
+            {
+                if (value == null)
+                {
+                    throw new ArgumentNullException("DispatchListConfiguration", "The dispatch list configuration cannot be null.");
+                }
+                else
+                {
+                    this.dispatchListConfiguration = value;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether the <c>happenings</c> world API shard is enabled in the request. The <c>happenings</c> shard retrieves the world's happenings. This shard cannot be enabled if the <c>dispatch</c>, <c>poll</c>, <c>regionsbytag</c> shard or <c>dispatchlist</c> shard is enabled.
+        /// </summary>
+        /// <value>A value indicating whether the <c>happenings</c> world API shard is enabled in the request.</value>
+        public bool Happenings
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Gets or sets the configuration for the <c>happenings</c> world API shard in the request.
+        /// </summary>
+        /// <value>The configuration for the <c>happenings</c> world API shard in the request.</value>
+        public HappeningsConfigurationData HappeningsConfiguration
+        {
+            get
+            {
+                return this.happeningsConfiguration;
+            }
+
+            set
+            {
+                if (value == null)
+                {
+                    throw new ArgumentNullException("HappeningsConfiguration", "The happenings configuration cannot be null.");
+                }
+                else
+                {
+                    this.happeningsConfiguration = value;
                 }
             }
         }
@@ -403,6 +526,79 @@ namespace Auralia.NationStates.Api
             /// </summary>
             /// <value>The tags that regions must not have in order to be included in the regions returned from the API</value>
             public string[] IncludeRegionsWithoutTags
+            {
+                get;
+                set;
+            }
+        }
+
+        /// <summary>
+        /// Represents the configuration for the <c>dispatchlist</c> world API shard.
+        /// </summary>
+        public class DispatchListConfigurationData
+        {
+            /// <summary>
+            /// Initializes a new instance of the <see cref="DispatchListConfigurationData"/> class.
+            /// </summary>
+            public DispatchListConfigurationData()
+            {
+                this.Author = null;
+                this.Category = null;
+                this.Subcategory = null;
+                this.Sort = null;
+            }
+
+            /// <summary>
+            /// Represents sort types, which sort the list of dispatches in a particular manner.
+            /// </summary>
+            public enum SortType
+            {
+                /// <summary>
+                /// Represents the <c>new</c> sort type, which sorts the list of dispatches in order from newest to oldest.
+                /// </summary>
+                New = 1,
+
+                /// <summary>
+                /// Represents the <c>best</c> sort type, which sorts the list of dispatches in order from most votes to least votes.
+                /// </summary>
+                Best = 2
+            }
+
+            /// <summary>
+            /// Gets or sets the author search term, which limits the dispatches returned to the specified author.
+            /// </summary>
+            /// <value>The author search term, which limits the dispatches returned to the specified author.</value>
+            public string Author
+            {
+                get;
+                set;
+            }
+
+            /// <summary>
+            /// Gets or sets the category search term, which limits the dispatches returned to the specified category.
+            /// </summary>
+            /// <value>The category search term, which limits the dispatches returned to the specified category.</value>
+            public string Category
+            {
+                get;
+                set;
+            }
+
+            /// <summary>
+            /// Gets or sets the subcategory search term, which limits the dispatches returned to the specified subcategory.
+            /// </summary>
+            /// <value>The subcategory search term, which limits the dispatches returned to the specified subcategory.</value>
+            public string Subcategory
+            {
+                get;
+                set;
+            }
+
+            /// <summary>
+            /// Gets or sets the sort type, which sorts the list of dispatches returned in a particular manner.
+            /// </summary>
+            /// <value>The sort type, which sorts the list of dispatches returned in a particular manner.</value>
+            public SortType? Sort
             {
                 get;
                 set;

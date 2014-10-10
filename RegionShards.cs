@@ -41,6 +41,7 @@ namespace Auralia.NationStates.Api
             this.Messages = enableAll;
             this.MessagesOffset = 0;
             this.History = enableAll;
+            this.Poll = enableAll;
         }
 
         /// <summary>
@@ -222,6 +223,16 @@ namespace Auralia.NationStates.Api
         /// </summary>
         /// <value>A value indicating whether the <c>history</c> region API shard is enabled in the request.</value>
         public bool History
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether the <c>poll</c> region API shard is enabled in the request. The <c>poll</c> shard retrieves the region's poll.
+        /// </summary>
+        /// <value>A value indicating whether the <c>poll</c> region API shard is enabled in the request.</value>
+        public bool Poll
         {
             get;
             set;

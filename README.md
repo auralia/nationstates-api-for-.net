@@ -6,9 +6,10 @@ NationStates API for .NET is a free and open source library that allows .NET app
 
 ## Features ##
 
-* Complete interface to the NationStates API (supports nation, region, world, World Assembly, telegram, authentication and even data dumps)
+* Complete interface to the NationStates API (supports the nation, region, world, World Assembly, telegram, authentication and data dump APIs)
 * Rate-limiting to prevent blocked access to the API, including for the telegram API (recruitment and non-recruitment)
-* XML decoding (all data is returned in simple data structures)
+* XML decoding (all data is returned in simple C# data structures)
+* Currently supports version 7 of the API
 
 ## Documentation ##
 
@@ -108,15 +109,10 @@ The following is a more complex example that retrieves and sorts a list of natio
 
 ## Downloads ##
 
-Source code downloads are available from [the project's GitHub page](https://github.com/auralia/nationstates-api-for-.net).
-
-Binary downloads of the latest version (0.1) are available from the [author's website](http://www.auralia.me).
-
-## Changelog ##
-* Version 0.1:
-	* Initial public release
+Source code and binary downloads are available from [the project's GitHub page](https://github.com/auralia/nationstates-api-for-.net).
 
 ## Copyright and License ##
+
 Copyright (C) 2013 Auralia.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:

@@ -21,8 +21,8 @@ namespace Auralia.NationStates.Api
         {
             this.NumberOfNations = enableAll;
             this.NumberOfDelegates = enableAll;
-            this.Members = enableAll;
             this.Delegates = enableAll;
+            this.Members = enableAll;
             this.Happenings = enableAll;
             this.MembershipHappenings = enableAll;
             this.Resolution = enableAll;
@@ -53,20 +53,20 @@ namespace Auralia.NationStates.Api
         }
 
         /// <summary>
-        /// Gets or sets a value indicating whether the <c>members</c> World Assembly API shard is enabled in the request. The <c>members</c> shard retrieves the World Assembly's member nations.
+        /// Gets or sets a value indicating whether the <c>delegates</c> World Assembly API shard is enabled in the request. The <c>delegates</c> shard retrieves the World Assembly's regional delegates.
         /// </summary>
-        /// <value>A value indicating whether the <c>members</c> World Assembly API shard is enabled in the request.</value>
-        public bool Members
+        /// <value>A value indicating whether the <c>delegates</c> World Assembly API shard is enabled in the request.</value>
+        public bool Delegates
         {
             get;
             set;
         }
 
         /// <summary>
-        /// Gets or sets a value indicating whether the <c>delegates</c> World Assembly API shard is enabled in the request. The <c>delegates</c> shard retrieves the World Assembly's regional delegates.
+        /// Gets or sets a value indicating whether the <c>members</c> World Assembly API shard is enabled in the request. The <c>members</c> shard retrieves the World Assembly's member nations.
         /// </summary>
-        /// <value>A value indicating whether the <c>delegates</c> World Assembly API shard is enabled in the request.</value>
-        public bool Delegates
+        /// <value>A value indicating whether the <c>members</c> World Assembly API shard is enabled in the request.</value>
+        public bool Members
         {
             get;
             set;

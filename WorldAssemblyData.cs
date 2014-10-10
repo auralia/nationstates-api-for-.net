@@ -21,13 +21,12 @@ namespace Auralia.NationStates.Api
         {
             this.NumberOfMembers = null;
             this.NumberOfDelegates = null;
-            this.Members = null;
             this.Delegates = null;
+            this.Members = null;
             this.Happenings = null;
             this.MembershipHappenings = null;
             this.ResolutionAtVote = null;
             this.LastResolution = null;
-            this.ResolutionAtVote = null;
         }
 
         /// <summary>

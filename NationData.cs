@@ -61,6 +61,13 @@ namespace Auralia.NationStates.Api
             this.CensusStatistics = null;
             this.Legislation = null;
             this.Happenings = null;
+            this.DemonymAdjective = null;
+            this.DemonymNoun = null;
+            this.DemonymNounPlural = null;
+            this.NumberOfFactbooks = null;
+            this.FactbookMetadata = null;
+            this.NumberOfDispatches = null;
+            this.DispatchMetadata = null;
         }
 
         /// <summary>
@@ -387,7 +394,7 @@ namespace Auralia.NationStates.Api
         /// Gets the percentage of the nation's economy that consists of the public sector. Corresponds to the <c>publicsector</c> nation API shard.
         /// </summary>
         /// <value>The percentage of the nation's economy that consists of the public sector.</value>
-        public int? PublicSectorPercentage
+        public double? PublicSectorPercentage
         {
             get;
             internal set;
@@ -484,6 +491,76 @@ namespace Auralia.NationStates.Api
         }
 
         /// <summary>
+        /// Gets the nation's demonym in adjective form. Corresponds to the <c>demonym</c> nation API shard.
+        /// </summary>
+        /// <value>The nation's demonym in adjective form.</value>
+        public string DemonymAdjective
+        {
+            get;
+            internal set;
+        }
+
+        /// <summary>
+        /// Gets the nation's demonym in noun form. Corresponds to the <c>demonym2</c> nation API shard.
+        /// </summary>
+        /// <value>The nation's demonym in noun form.</value>
+        public string DemonymNoun
+        {
+            get;
+            internal set;
+        }
+
+        /// <summary>
+        /// Gets the nation's demonym in plural noun form. Corresponds to the <c>demonym2plural</c> nation API shard.
+        /// </summary>
+        /// <value>The nation's demonym in plural noun form.</value>
+        public string DemonymNounPlural
+        {
+            get;
+            internal set;
+        }
+
+        /// <summary>
+        /// Gets the number of factbooks the nation has created. Corresponds to the <c>factbooks</c> nation API shard.
+        /// </summary>
+        /// <value>The number of factbooks the nation has created.</value>
+        public int? NumberOfFactbooks
+        {
+            get;
+            internal set;
+        }
+
+        /// <summary>
+        /// Gets the metadata for the factbooks specified in the request. Corresponds to the <c>factbooklist</c> nation API shard.
+        /// </summary>
+        /// <value>The metadata for the factbooks specified in the request.</value>
+        public FactbookMetadataData[] FactbookMetadata
+        {
+            get;
+            internal set;
+        }
+
+        /// <summary>
+        /// Gets the number of dispatches the nation has created. Corresponds to the <c>dispatches</c> nation API shard.
+        /// </summary>
+        /// <value>The number of dispatches the nation has created.</value>
+        public int? NumberOfDispatches
+        {
+            get;
+            internal set;
+        }
+
+        /// <summary>
+        /// Gets the metadata for the dispatches specified in the request. Corresponds to the <c>dispatchlist</c> nation API shard.
+        /// </summary>
+        /// <value>The metadata for the dispatches specified in the request.</value>
+        public DispatchMetadataData[] DispatchMetadata
+        {
+            get;
+            internal set;
+        }
+
+        /// <summary>
         /// Represents the nation's Civil Rights, Economy and Political Freedoms descriptions.
         /// </summary>
         public class FreedomDescriptionsData
@@ -556,7 +633,7 @@ namespace Auralia.NationStates.Api
             /// Gets the percentage of the government budget allocated to the Environment.
             /// </summary>
             /// <value>The percentage of the government budget allocated to the Environment.</value>
-            public int? EnvironmentPercentage
+            public double? EnvironmentPercentage
             {
                 get;
                 internal set;
@@ -566,7 +643,7 @@ namespace Auralia.NationStates.Api
             /// Gets the percentage of the government budget allocated to Social Equality.
             /// </summary>
             /// <value>The percentage of the government budget allocated to Social Equality.</value>
-            public int? SocialEqualityPercentage
+            public double? SocialEqualityPercentage
             {
                 get;
                 internal set;
@@ -576,7 +653,7 @@ namespace Auralia.NationStates.Api
             /// Gets the percentage of the government budget allocated to Education.
             /// </summary>
             /// <value>The percentage of the government budget allocated to Education.</value>
-            public int? EducationPercentage
+            public double? EducationPercentage
             {
                 get;
                 internal set;
@@ -586,7 +663,7 @@ namespace Auralia.NationStates.Api
             /// Gets the percentage of the government budget allocated to Law and Order.
             /// </summary>
             /// <value>The percentage of the government budget allocated to Law and Order.</value>
-            public int? LawAndOrderPercentage
+            public double? LawAndOrderPercentage
             {
                 get;
                 internal set;
@@ -596,7 +673,7 @@ namespace Auralia.NationStates.Api
             /// Gets the percentage of the government budget allocated to Administration.
             /// </summary>
             /// <value>The percentage of the government budget allocated to Administration.</value>
-            public int? AdministrationPercentage
+            public double? AdministrationPercentage
             {
                 get;
                 internal set;
@@ -606,7 +683,7 @@ namespace Auralia.NationStates.Api
             /// Gets the percentage of the government budget allocated to Welfare.
             /// </summary>
             /// <value>The percentage of the government budget allocated to Welfare.</value>
-            public int? WelfarePercentage
+            public double? WelfarePercentage
             {
                 get;
                 internal set;
@@ -616,7 +693,7 @@ namespace Auralia.NationStates.Api
             /// Gets the percentage of the government budget allocated to Spirituality.
             /// </summary>
             /// <value>The percentage of the government budget allocated to Spirituality.</value>
-            public int? SpiritualityPercentage
+            public double? SpiritualityPercentage
             {
                 get;
                 internal set;
@@ -626,7 +703,7 @@ namespace Auralia.NationStates.Api
             /// Gets the percentage of the government budget allocated to Defense.
             /// </summary>
             /// <value>The percentage of the government budget allocated to Defense.</value>
-            public int? DefensePercentage
+            public double? DefensePercentage
             {
                 get;
                 internal set;
@@ -636,7 +713,7 @@ namespace Auralia.NationStates.Api
             /// Gets the percentage of the government budget allocated to Public Transport.
             /// </summary>
             /// <value>The percentage of the government budget allocated to Public Transport.</value>
-            public int? PublicTransportPercentage
+            public double? PublicTransportPercentage
             {
                 get;
                 internal set;
@@ -646,7 +723,7 @@ namespace Auralia.NationStates.Api
             /// Gets the percentage of the government budget allocated to Healthcare.
             /// </summary>
             /// <value>The percentage of the government budget allocated to Healthcare.</value>
-            public int? HealthcarePercentage
+            public double? HealthcarePercentage
             {
                 get;
                 internal set;
@@ -656,7 +733,7 @@ namespace Auralia.NationStates.Api
             /// Gets the percentage of the government budget allocated to Commerce.
             /// </summary>
             /// <value>The percentage of the government budget allocated to Commerce.</value>
-            public int? CommercePercentage
+            public double? CommercePercentage
             {
                 get;
                 internal set;
@@ -737,7 +814,7 @@ namespace Auralia.NationStates.Api
             /// Gets the percentage of the nation's deaths resulting from the cause of death.
             /// </summary>
             /// <value>The percentage of the nation's deaths resulting from the cause of death.</value>
-            public int? Percentage
+            public double? Percentage
             {
                 get;
                 internal set;
@@ -808,6 +885,230 @@ namespace Auralia.NationStates.Api
             /// </summary>
             /// <value>The entry's text.</value>
             public string Text
+            {
+                get;
+                internal set;
+            }
+        }
+
+        /// <summary>
+        /// Represents the metadata associated with a factbook.
+        /// </summary>
+        public class FactbookMetadataData
+        {
+            /// <summary>
+            /// Initializes a new instance of the <see cref="FactbookMetadataData"/> class.
+            /// </summary>
+            public FactbookMetadataData()
+            {
+                this.Id = null;
+                this.Title = null;
+                this.Author = null;
+                this.Category = null;
+                this.Subcategory = null;
+                this.DateCreated = null;
+                this.DateEdited = null;
+                this.NumberOfViews = null;
+                this.Score = null;
+            }
+
+            /// <summary>
+            /// Gets the factbook's ID.
+            /// </summary>
+            /// <value>The factbook's ID.</value>
+            public int? Id
+            {
+                get;
+                internal set;
+            }
+
+            /// <summary>
+            /// Gets the factbook's title.
+            /// </summary>
+            /// <value>The factbook's title.</value>
+            public string Title
+            {
+                get;
+                internal set;
+            }
+
+            /// <summary>
+            /// Gets the factbook's author.
+            /// </summary>
+            /// <value>The factbook's author.</value>
+            public string Author
+            {
+                get;
+                internal set;
+            }
+
+            /// <summary>
+            /// Gets the factbook's category.
+            /// </summary>
+            /// <value>The factbook's category.</value>
+            public string Category
+            {
+                get;
+                internal set;
+            }
+
+            /// <summary>
+            /// Gets the factbook's subcategory.
+            /// </summary>
+            /// <value>The factbook's subcategory.</value>
+            public string Subcategory
+            {
+                get;
+                internal set;
+            }
+
+            /// <summary>
+            /// Gets the date on which the factbook was created.
+            /// </summary>
+            /// <value>The date on which the factbook was created.</value>
+            public DateTime? DateCreated
+            {
+                get;
+                internal set;
+            }
+
+            /// <summary>
+            /// Gets the date on which the factbook was last edited.
+            /// </summary>
+            /// <value>The date on which the factbook was last edited.</value>
+            public DateTime? DateEdited
+            {
+                get;
+                internal set;
+            }
+
+            /// <summary>
+            /// Gets the number of views the factbook has received.
+            /// </summary>
+            /// <value>The number of views the factbook has received.</value>
+            public int? NumberOfViews
+            {
+                get;
+                internal set;
+            }
+
+            /// <summary>
+            /// Gets the factbook's score.
+            /// </summary>
+            /// <value>The factbook's score.</value>
+            public int? Score
+            {
+                get;
+                internal set;
+            }
+        }
+
+        /// <summary>
+        /// Represents the metadata associated with a dispatch.
+        /// </summary>
+        public class DispatchMetadataData
+        {
+            /// <summary>
+            /// Initializes a new instance of the <see cref="DispatchMetadataData"/> class.
+            /// </summary>
+            public DispatchMetadataData()
+            {
+                this.Id = null;
+                this.Title = null;
+                this.Author = null;
+                this.Category = null;
+                this.Subcategory = null;
+                this.DateCreated = null;
+                this.DateEdited = null;
+                this.NumberOfViews = null;
+                this.Score = null;
+            }
+
+            /// <summary>
+            /// Gets the dispatch's ID.
+            /// </summary>
+            /// <value>The dispatch's ID.</value>
+            public int? Id
+            {
+                get;
+                internal set;
+            }
+
+            /// <summary>
+            /// Gets the dispatch's title.
+            /// </summary>
+            /// <value>The dispatch's title.</value>
+            public string Title
+            {
+                get;
+                internal set;
+            }
+
+            /// <summary>
+            /// Gets the dispatch's author.
+            /// </summary>
+            /// <value>The dispatch's author.</value>
+            public string Author
+            {
+                get;
+                internal set;
+            }
+
+            /// <summary>
+            /// Gets the dispatch's category.
+            /// </summary>
+            /// <value>The dispatch's category.</value>
+            public string Category
+            {
+                get;
+                internal set;
+            }
+
+            /// <summary>
+            /// Gets the dispatch's subcategory.
+            /// </summary>
+            /// <value>The dispatch's subcategory.</value>
+            public string Subcategory
+            {
+                get;
+                internal set;
+            }
+
+            /// <summary>
+            /// Gets the date on which the dispatch was created.
+            /// </summary>
+            /// <value>The date on which the dispatch was created.</value>
+            public DateTime? DateCreated
+            {
+                get;
+                internal set;
+            }
+
+            /// <summary>
+            /// Gets the date on which the dispatch was last edited.
+            /// </summary>
+            /// <value>The date on which the dispatch was last edited.</value>
+            public DateTime? DateEdited
+            {
+                get;
+                internal set;
+            }
+
+            /// <summary>
+            /// Gets the number of views the dispatch has received.
+            /// </summary>
+            /// <value>The number of views the dispatch has received.</value>
+            public int? NumberOfViews
+            {
+                get;
+                internal set;
+            }
+
+            /// <summary>
+            /// Gets the dispatch's score.
+            /// </summary>
+            /// <value>The dispatch's score.</value>
+            public int? Score
             {
                 get;
                 internal set;

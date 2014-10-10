@@ -68,6 +68,13 @@ namespace Auralia.NationStates.Api
             this.CensusStatisticsIds = new List<int?>(new int?[] { null });
             this.Legislation = enableAll;
             this.Happenings = enableAll;
+            this.DemonymAdjective = enableAll;
+            this.DemonymNoun = enableAll;
+            this.DemonymNounPlural = enableAll;
+            this.NumberOfFactbooks = enableAll;
+            this.FactbookMetadata = enableAll;
+            this.NumberOfDispatches = enableAll;
+            this.DispatchMetadata = enableAll;
         }
 
         /// <summary>
@@ -509,6 +516,76 @@ namespace Auralia.NationStates.Api
         /// </summary>
         /// <value>A value indicating whether the <c>happenings</c> nation API shard is enabled in the request.</value>
         public bool Happenings
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether the <c>denonym</c> nation API shard is enabled in the request. The <c>demonym</c> shard retrieves the nation's demonym in adjective form.
+        /// </summary>
+        /// <value>A value indicating whether the <c>denonym</c> nation API shard is enabled in the request.</value>
+        public bool DemonymAdjective
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether the <c>denonym2</c> nation API shard is enabled in the request. The <c>demonym</c> shard retrieves the nation's demonym in noun form.
+        /// </summary>
+        /// <value>A value indicating whether the <c>denonym2</c> nation API shard is enabled in the request.</value>
+        public bool DemonymNoun
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether the <c>denonym2plural</c> nation API shard is enabled in the request. The <c>demonym</c> shard retrieves the nation's demonym in plural noun form.
+        /// </summary>
+        /// <value>A value indicating whether the <c>denonym2plural</c> nation API shard is enabled in the request.</value>
+        public bool DemonymNounPlural
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether the <c>factbooks</c> nation API shard is enabled in the request. The <c>factbooks</c> shard retrieves the number of factbooks the nation has created.
+        /// </summary>
+        /// <value>A value indicating whether the <c>factbooks</c> nation API shard is enabled in the request.</value>
+        public bool NumberOfFactbooks
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether the <c>factbooklist</c> nation API shard is enabled in the request. The <c>factbooklist</c> shard retrieves metadata for each of the factbooks the nation has created.
+        /// </summary>
+        /// <value>A value indicating whether the <c>factbooklist</c> nation API shard is enabled in the request.</value>
+        public bool FactbookMetadata
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether the <c>dispatches</c> nation API shard is enabled in the request. The <c>dispatches</c> shard retrieves the number of dispatches the nation has created.
+        /// </summary>
+        /// <value>A value indicating whether the <c>dispatches</c> nation API shard is enabled in the request.</value>
+        public bool NumberOfDispatches
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether the <c>dispatchlist</c> nation API shard is enabled in the request. The <c>dispatchlist</c> shard retrieves metadata for each of the dispatches the nation has created.
+        /// </summary>
+        /// <value>A value indicating whether the <c>dispatchlist</c> nation API shard is enabled in the request.</value>
+        public bool DispatchMetadata
         {
             get;
             set;
